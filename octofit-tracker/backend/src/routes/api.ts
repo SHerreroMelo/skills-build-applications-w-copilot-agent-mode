@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { API_BASE_URL } from '../config/api.js';
 import { database } from '../config/database.js';
 import { Activity, Leaderboard, Team, User, Workout } from '../models/index.js';
 
@@ -7,6 +8,7 @@ export const apiRouter = Router();
 apiRouter.get('/health', (_request, response) => {
   response.json({
     status: 'ok',
+    baseUrl: API_BASE_URL,
     database: database.readyState === 1 ? 'connected' : 'disconnected',
   });
 });

@@ -1,9 +1,9 @@
 import express from 'express';
+import { API_PORT, API_BASE_URL } from './config/api.js';
 import { connectDatabase } from './config/database.js';
 import { apiRouter } from './routes/api.js';
 
 const app = express();
-const port = Number(process.env.PORT ?? 8000);
 
 app.use(express.json());
 app.use('/api', apiRouter);
@@ -19,6 +19,6 @@ app.use((error: Error, _request: express.Request, response: express.Response, _n
 
 await connectDatabase();
 
-app.listen(port, '0.0.0.0', () => {
-  console.log(`OctoFit API listening on port ${port}`);
+app.listen(API_PORT, '0.0.0.0', () => {
+  console.log(`OctoFit API listening at ${API_BASE_URL}`);
 });
